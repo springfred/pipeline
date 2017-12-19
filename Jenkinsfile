@@ -7,9 +7,18 @@ pipeline {
   }
   stages {
     stage('build') {
-      steps {
-        sh 'echo "aaaa"'
-        build 'aaaa'
+      parallel {
+        stage('build') {
+          steps {
+            sh 'echo "aaaa"'
+            build 'aaaa'
+          }
+        }
+        stage('test1') {
+          steps {
+            echo 'aaaaa'
+          }
+        }
       }
     }
   }
